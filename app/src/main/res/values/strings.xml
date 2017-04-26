@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="action_settings">Settings</string>
+    <string name="app_name">KiWiVMware</string>
+
+    <!--  -->
+    <string name="kiwi_physical_location">Physical Location</string>
+    <string name="kiwi_ip_addr">IP address</string>
+    <string name="kiwi_ssh_port">SSH Port</string>
+    <string name="kiwi_status">Status</string>
+    <string name="kiwi_actions">Actions</string>
+    <string name="kiwi_ram">RAM</string>
+    <string name="kiwi_swap">SWAP</string>
+    <string name="kiwi_disk_usage">Disk usage (/)</string>
+    <string name="kiwi_bandwidth_usage">Bandwidth usage</string>
+    <string name="kiwi_bandwidth_usage_resets">Resets</string>
+    <string name="kiwi_os">Operating system</string>
+    <string name="kiwi_hostname">Hostname</string>
+    <string name="kiwi_ptr_records">PTR Records (Reverse DNS)</string>
+    <string name="kiwi_ptr_record_not_set">PTR Records Not Set</string>
+
+    <string name="kiwi_action_start">start</string>
+    <string name="kiwi_action_stop">stop</string>
+    <string name="kiwi_action_reboot">reboot</string>
+
+
+    <string name="menu_settings_edit">Edit</string>
+    <string name="menu_settings_add_vps">Add VPS</string>
+    <string name="menu_settings_select_vps">Select VPS</string>
+    <string name="menu_settings_refresh">Refresh</string>
+    <string name="menu_settings_pref">Settings</string>
+
+
+    <string name="info_text_loading">Loading&#8230;&#8230;&#8230;</string>
+    <string name="title_kiwi_recorder">Add A VPS</string>
+
+
+    <string name="label_veid">VEID</string>
+    <string name="label_veid_hint">Please enter your VPS\'s VEID</string>
+    <string name="label_api_key">API KEY</string>
+    <string name="label_api_key_hint">Please enter your VPS\'s API KEY</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="label_mark">Remark</string>
+    <string name="label_mark_hint">Enter a alias or sth (30 characters at most)</string>
+    <string name="err_no_vps_record" >Please Add A VPS First!</string>
+    <string name="run" >Run</string>
+    <string name="menu_settings_shell">Exec Shell</string>
+    <string name="menu_settings_cmds">Cmds</string>
+    <string name="up">up</string>
+    <string name="down">down</string>
+
+</resources>

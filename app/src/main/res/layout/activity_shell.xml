@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.freddon.android.app.kiwivmware.MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="@string/app_name"
+            app:titleTextColor="@color/white" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/defaultTextColor">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/et_messages"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:padding="@dimen/formMargin"
+                    android:background="@null"
+                    android:textColor="@color/greenTextColor"
+                    android:textIsSelectable="true"
+                    android:textSize="@dimen/H3"
+                    tools:text="# shell" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <View style="@style/DividerStyle" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/defaultTextColor"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_up"
+                    android:layout_width="48dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/selector_cmd_page_up" />
+
+                <ImageView
+                    android:id="@+id/iv_down"
+                    android:layout_width="48dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/selector_cmd_page_down" />
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$"
+                android:textColor="@color/greenTextColor"
+                android:textSize="@dimen/H3" />
+
+            <EditText
+                android:id="@+id/et_cmd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/defaultTextColor"
+                android:hint="Shell"
+                android:maxLines="5"
+                android:overScrollMode="ifContentScrolls"
+                android:paddingBottom="@dimen/formMargin"
+                android:paddingLeft="@dimen/iconPadding"
+                android:paddingTop="@dimen/formMargin"
+                android:textColor="@color/colorAccent"
+                android:textColorHint="@color/colorAccentAlpha"
+                android:textSize="@dimen/H3"
+                tools:text="shell" />
+
+            <TextView
+                android:id="@+id/tv_run"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:background="@color/colorAccent"
+                android:gravity="top"
+                android:padding="@dimen/formMargin"
+                android:text="@string/run"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

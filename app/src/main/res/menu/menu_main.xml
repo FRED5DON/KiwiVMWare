@@ -1,0 +1,33 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.freddon.android.app.kiwivmware.MainActivity">
+
+    <item
+        android:id="@+id/action_settings_add_vps"
+        android:orderInCategory="100"
+        android:title="@string/menu_settings_add_vps"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_settings_select_vps"
+        android:orderInCategory="100"
+        android:title="@string/menu_settings_select_vps"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_settings_refresh"
+        android:orderInCategory="100"
+        android:title="@string/menu_settings_refresh"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_settings_shell"
+        android:orderInCategory="100"
+        android:title="@string/menu_settings_shell"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_settings_pref"
+        android:orderInCategory="100"
+        android:title="@string/menu_settings_pref"
+        app:showAsAction="never" />
+</menu>

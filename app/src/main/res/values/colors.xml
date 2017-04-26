@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#686bb7</color>
+    <color name="colorPrimaryDark">#4548A0</color>
+    <color name="colorAccent">#ff8030</color>
+    <color name="textPrimaryColor">#ff8030</color>
+
+    <!-- 509fea -->
+    <color name="statusBarColor">#686bb7</color>
+    <color name="colorAccentAlpha">#80ff8030</color>
+    <color name="windowBackground">#f9f9f9</color>
+    <color name="dividerColor">#f1f1f1</color>
+
+    <!--text-->
+    <color name="white">#FFFFFF</color>
+
+    <color name="defaultTextColor">#3e3e3e</color>
+    <color name="defaultLightTextColor">#666666</color>
+    <color name="defaultHintTextColor">#AEAEAE</color>
+    <color name="whiteTextColor">#ededed</color>
+    <color name="greenTextColor">#35c241</color>
+    <color name="whiteHintTextColor">#eaeaea</color>
+    <color name="highlightTextColor">#ff8030</color>
+
+</resources>

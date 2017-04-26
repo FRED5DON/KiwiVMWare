@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/letterGap">
+
+    <TextView
+        android:id="@+id/tr_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/formPadding"
+        android:text="@string/kiwi_physical_location"
+        android:textColor="@color/defaultTextColor"
+        android:textSize="@dimen/H3" />
+
+    <TextView
+        android:id="@+id/tr_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:text="US, California    Node ID: v804    VPS ID: 417517" />
+</TableRow>

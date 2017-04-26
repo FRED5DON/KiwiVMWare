@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MaskLayoutView">
+        <attr name="maskIcon" format="reference|color" />
+        <attr name="maskText" format="string" />
+    </declare-styleable>
+
+
+    <style name="DividerStyle">
+        <item name="android:layout_height">1dip</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/dividerColor</item>
+    </style>
+
+</resources>
