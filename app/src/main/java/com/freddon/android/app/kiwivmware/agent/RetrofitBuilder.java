@@ -61,7 +61,7 @@ public class RetrofitBuilder {
 //                                .cacheControl(CacheControl.FORCE_CACHE)
 //                                .build();
                         Request.Builder rBuilder = request.newBuilder()
-                                .cacheControl(CacheControl.FORCE_CACHE);
+                                .cacheControl(CacheControl.FORCE_NETWORK);
 
                         request = rBuilder.build();
                     } else {

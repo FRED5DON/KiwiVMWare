@@ -18,11 +18,13 @@
         android:textSize="@dimen/H3"
         tools:text="123312312" />
 
-    <RadioButton
-        android:id="@+id/rb_chose"
+    <ImageView
+        android:id="@+id/img_chose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/fieldSetMargin"
-        android:checked="false" />
+        android:visibility="invisible"
+        android:src="@drawable/ic_check_circle_green_400_24dp"
+        />
 
 </LinearLayout>

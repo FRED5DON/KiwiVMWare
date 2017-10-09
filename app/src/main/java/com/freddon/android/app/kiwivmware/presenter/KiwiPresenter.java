@@ -33,27 +33,51 @@ public class KiwiPresenter extends RxJavaMiddleWare<IKiwiComposer.View> implemen
         //取上一次的veid与key 如果只有一个则默认选择
         KiwiVPSRecord vps = VPSRecordMaker.getChecked(App.getInstance());
         //如果没有 提示需要添加主机记录
-        if (vps==null){
+        if (vps == null) {
             //显示添加按钮
             mView.error(App.getInstance().getResources().getString(R.string.err_no_vps_record));
-        }else{
+        } else {
             requestApi_getLiveServiceInfo(vps);
         }
     }
 
     @Override
     public void restart() {
-
+//取上一次的veid与key 如果只有一个则默认选择
+        KiwiVPSRecord vps = VPSRecordMaker.getChecked(App.getInstance());
+        //如果没有 提示需要添加主机记录
+        if (vps == null) {
+            //显示添加按钮
+            mView.error(App.getInstance().getResources().getString(R.string.err_no_vps_record));
+        } else {
+            requestApi_restart(vps);
+        }
     }
 
     @Override
     public void start() {
-
+//取上一次的veid与key 如果只有一个则默认选择
+        KiwiVPSRecord vps = VPSRecordMaker.getChecked(App.getInstance());
+        //如果没有 提示需要添加主机记录
+        if (vps == null) {
+            //显示添加按钮
+            mView.error(App.getInstance().getResources().getString(R.string.err_no_vps_record));
+        } else {
+            requestApi_start(vps);
+        }
     }
 
     @Override
     public void stop() {
-
+//取上一次的veid与key 如果只有一个则默认选择
+        KiwiVPSRecord vps = VPSRecordMaker.getChecked(App.getInstance());
+        //如果没有 提示需要添加主机记录
+        if (vps == null) {
+            //显示添加按钮
+            mView.error(App.getInstance().getResources().getString(R.string.err_no_vps_record));
+        } else {
+            requestApi_stop(vps);
+        }
     }
 
     // region : @fred  [2017/3/15]
@@ -66,13 +90,15 @@ public class KiwiPresenter extends RxJavaMiddleWare<IKiwiComposer.View> implemen
                 .subscribe(new Action1<VPSInfo>() {
                     @Override
                     public void call(VPSInfo vpsInfo) {
+                        mView.loading(false);
                         vpsInfo.setVpsId(vps.getVeid());
                         mView.on_getLiveServiceInfo(vpsInfo);
-                        mView.loading(false);
+                        mView.error(vpsInfo.getMessage());
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
+                        mView.error(App.getInstance().getResources().getString(R.string.internet_error));
                         mView.loading(false);
                     }
                 });
@@ -87,14 +113,19 @@ public class KiwiPresenter extends RxJavaMiddleWare<IKiwiComposer.View> implemen
                 .subscribe(new Action1<VPSInfo>() {
                     @Override
                     public void call(VPSInfo vpsInfo) {
-                        vpsInfo.setVpsId(vps.getVeid());
-                        mView.on_getLiveServiceInfo(vpsInfo);
-                        mView.loading(false);
+                        if ("0".equals(vpsInfo.getError())) {
+                            mView.error(App.getInstance().getResources().getString(R.string.operation_success));
+                            getLiveServiceInfo();
+                        } else {
+                            mView.loading(false);
+                            mView.error(App.getInstance().getResources().getString(R.string.operation_failure) + "：" + vpsInfo.getMessage());
+                        }
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
                         mView.loading(false);
+                        mView.error(App.getInstance().getResources().getString(R.string.internet_error));
                     }
                 });
         subscribe(rxSubscription);
@@ -108,14 +139,19 @@ public class KiwiPresenter extends RxJavaMiddleWare<IKiwiComposer.View> implemen
                 .subscribe(new Action1<VPSInfo>() {
                     @Override
                     public void call(VPSInfo vpsInfo) {
-                        vpsInfo.setVpsId(vps.getVeid());
-                        mView.on_getLiveServiceInfo(vpsInfo);
-                        mView.loading(false);
+                        if ("0".equals(vpsInfo.getError())) {
+                            mView.error(App.getInstance().getResources().getString(R.string.operation_success));
+                            getLiveServiceInfo();
+                        } else {
+                            mView.loading(false);
+                            mView.error(App.getInstance().getResources().getString(R.string.operation_failure) + "：" + vpsInfo.getMessage());
+                        }
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
                         mView.loading(false);
+                        mView.error(App.getInstance().getResources().getString(R.string.internet_error));
                     }
                 });
         subscribe(rxSubscription);
@@ -129,14 +165,19 @@ public class KiwiPresenter extends RxJavaMiddleWare<IKiwiComposer.View> implemen
                 .subscribe(new Action1<VPSInfo>() {
                     @Override
                     public void call(VPSInfo vpsInfo) {
-                        vpsInfo.setVpsId(vps.getVeid());
-                        mView.on_getLiveServiceInfo(vpsInfo);
-                        mView.loading(false);
+                        if ("0".equals(vpsInfo.getError())) {
+                            mView.error(App.getInstance().getResources().getString(R.string.operation_success));
+                            getLiveServiceInfo();
+                        } else {
+                            mView.loading(false);
+                            mView.error(App.getInstance().getResources().getString(R.string.operation_failure) + "：" + vpsInfo.getMessage());
+                        }
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
                         mView.loading(false);
+                        mView.error(App.getInstance().getResources().getString(R.string.internet_error));
                     }
                 });
         subscribe(rxSubscription);

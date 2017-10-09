@@ -13,6 +13,7 @@
 
     <!--text-->
     <color name="white">#FFFFFF</color>
+    <color name="white_press">#FAFAFA</color>
 
     <color name="defaultTextColor">#3e3e3e</color>
     <color name="defaultLightTextColor">#666666</color>

@@ -163,7 +163,7 @@ public class RegexHelper {
         if (TextUtils.isDigitsOnly(str)) {
             return true;
         }
-        boolean isNumber = str.matches("\\d*(.\\d*)?");
+        boolean isNumber = str.matches("\\d+(.\\d*)?");
         if (isNumber) {
             return isNumber;
         }

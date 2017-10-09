@@ -18,6 +18,7 @@ import com.freddon.android.app.kiwivmware.R;
 import com.freddon.android.app.kiwivmware.agent.RxEventBus;
 import com.freddon.android.app.kiwivmware.config.VPSRecordMaker;
 import com.freddon.android.app.kiwivmware.model.KiwiVPSRecord;
+import com.freddon.android.app.kiwivmware.tools.ModalTools;
 import com.freddon.android.app.kiwivmware.tools.RegexHelper;
 import com.freddon.android.app.kiwivmware.tools.SPBase;
 
@@ -100,6 +101,7 @@ public class KiwiVPSRecorderDialog extends BaseDialogFragment {
                 if (!isValid()){
                     return;
                 }
+                ModalTools.showToast(getActivity(),"如果不知道什么是VEID，请查看首页的'关于'");
                 KiwiVPSRecord record=new KiwiVPSRecord();
                 record.setApiKey(etApikey.getText().toString().trim());
                 record.setVeid(etVeid.getText().toString().trim());

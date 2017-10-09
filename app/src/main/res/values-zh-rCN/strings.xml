@@ -49,4 +49,8 @@
     <string name="menu_settings_cmds">Cmds</string>
     <string name="up">up</string>
     <string name="down">down</string>
+    <string name="operation_success">操作成功</string>
+    <string name="operation_failure">操作失败</string>
+    <string name="menu_settings_about">关于</string>
+    <string name="internet_error">请检查网络</string>
 </resources>

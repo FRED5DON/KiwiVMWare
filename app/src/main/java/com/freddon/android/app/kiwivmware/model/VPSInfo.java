@@ -48,6 +48,7 @@ public class VPSInfo {
     private Map<String, String> ptr;
     private String suspended;// false,
     private String error;// 0
+    private String message;
 
 
     //addition parameters
@@ -273,5 +274,13 @@ public class VPSInfo {
 
     public void setVz_quota(VZQuota vz_quota) {
         this.vz_quota = vz_quota;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

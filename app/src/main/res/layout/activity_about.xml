@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:fitsSystemWindows="true">
+
+<android.support.design.widget.AppBarLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:theme="@style/AppTheme.AppBarOverlay">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:title="@string/menu_settings_about"
+        app:titleTextColor="@color/white" />
+
+</android.support.design.widget.AppBarLayout>
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:id="@+id/login_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/formMargin"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/formPadding"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="@dimen/letterGap"
+            android:gravity="center"
+            android:text="kiwivm 简版客户端1.0\n by fred don\n\nA Android Client Of bandwagon(bwh1.net) kiwivm\n\n主要功能：\n1 查看主机基本信息 \n2 添加切换查看主机 \n3 shell命令模拟 \n4 主机操作（启动或停止主机）\n"
+            android:textColor="@color/defaultTextColor"
+            android:textSize="@dimen/H2" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/letterGap"
+            android:text="如何获取自己VPS主机的VEID与API Secret？"
+            android:textColor="@color/defaultTextColor"
+            android:textSize="@dimen/H3" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/howtogetveid"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/letterGap"
+            android:text="个人网站："
+            android:textColor="@color/defaultTextColor"
+            android:textSize="@dimen/H3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/letterGap"
+            android:text="https://www.snackblogs.com/"
+            android:textColor="@color/defaultTextColor"
+            android:textIsSelectable="true"
+            android:textSize="@dimen/H3" />
+
+
+    </LinearLayout>
+</ScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

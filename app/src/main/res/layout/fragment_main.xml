@@ -62,7 +62,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        tools:text="US, California    Node ID: v804    VPS ID: 417517" />
+                        tools:text="US, California    Node ID: v804    VPS ID: 411517" />
                 </TableRow>
 
                 <TableRow android:layout_marginBottom="@dimen/letterGap">
@@ -354,7 +354,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        tools:text="Centos 6 x86_64" />
+                        tools:text="Centos 6.5 x86_x64" />
                 </TableRow>
 
                 <TableRow android:layout_marginBottom="@dimen/letterGap">

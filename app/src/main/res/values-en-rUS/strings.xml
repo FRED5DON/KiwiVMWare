@@ -49,4 +49,8 @@
     <string name="menu_settings_cmds">Cmds</string>
     <string name="up">up</string>
     <string name="down">down</string>
+    <string name="operation_success">Oper. Success</string>
+    <string name="operation_failure">Oper. Failure</string>
+    <string name="menu_settings_about">About</string>
+    <string name="internet_error">Internet Error</string>
 </resources>

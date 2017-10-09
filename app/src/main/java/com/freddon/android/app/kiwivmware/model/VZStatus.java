@@ -9,21 +9,21 @@ public class VZStatus {
     private String status;// "running",
     private String hostname;// "localhost.localdomain",
     private String load_average;// "0.00/0.00/0.00",
-    private int nproc;// "34",
+    private String nproc;// "34",
     private int nproc_b;// "200",
-    private long kmemsize;// "8282863",
+    private String kmemsize;// "8282863",
     private long kmemsize_b;// "134217728",
-    private long privvmpages;// "114810",
+    private String privvmpages;// "114810",
     private long privvmpages_b;// "262144",
-    private long oomguarpages;// "33960",
+    private String oomguarpages;// "33960",
     private long oomguarpages_b;// "65536",
-    private int numtcpsock;// "7",
+    private String numtcpsock;// "7",
     private int numtcpsock_b;// "1670",
-    private int numfile;// "319",
+    private String numfile;// "319",
     private int numfile_b;// "10240",
-    private long swappages;// "11833",
+    private String swappages;// "11833",
     private long swappages_b;// "32768",
-    private long physpages;// "33290",
+    private String physpages;// "33290",
     private long physpages_l;// "65536"
 
     public VZStatus() {
@@ -53,11 +53,11 @@ public class VZStatus {
         this.load_average = load_average;
     }
 
-    public int getNproc() {
+    public String getNproc() {
         return nproc;
     }
 
-    public void setNproc(int nproc) {
+    public void setNproc(String nproc) {
         this.nproc = nproc;
     }
 
@@ -69,11 +69,11 @@ public class VZStatus {
         this.nproc_b = nproc_b;
     }
 
-    public long getKmemsize() {
+    public String getKmemsize() {
         return kmemsize;
     }
 
-    public void setKmemsize(long kmemsize) {
+    public void setKmemsize(String kmemsize) {
         this.kmemsize = kmemsize;
     }
 
@@ -85,11 +85,11 @@ public class VZStatus {
         this.kmemsize_b = kmemsize_b;
     }
 
-    public long getPrivvmpages() {
+    public String getPrivvmpages() {
         return privvmpages;
     }
 
-    public void setPrivvmpages(long privvmpages) {
+    public void setPrivvmpages(String privvmpages) {
         this.privvmpages = privvmpages;
     }
 
@@ -101,11 +101,11 @@ public class VZStatus {
         this.privvmpages_b = privvmpages_b;
     }
 
-    public long getOomguarpages() {
+    public String getOomguarpages() {
         return oomguarpages;
     }
 
-    public void setOomguarpages(long oomguarpages) {
+    public void setOomguarpages(String oomguarpages) {
         this.oomguarpages = oomguarpages;
     }
 
@@ -117,11 +117,11 @@ public class VZStatus {
         this.oomguarpages_b = oomguarpages_b;
     }
 
-    public int getNumtcpsock() {
+    public String getNumtcpsock() {
         return numtcpsock;
     }
 
-    public void setNumtcpsock(int numtcpsock) {
+    public void setNumtcpsock(String numtcpsock) {
         this.numtcpsock = numtcpsock;
     }
 
@@ -133,11 +133,11 @@ public class VZStatus {
         this.numtcpsock_b = numtcpsock_b;
     }
 
-    public int getNumfile() {
+    public String getNumfile() {
         return numfile;
     }
 
-    public void setNumfile(int numfile) {
+    public void setNumfile(String numfile) {
         this.numfile = numfile;
     }
 
@@ -149,11 +149,11 @@ public class VZStatus {
         this.numfile_b = numfile_b;
     }
 
-    public long getSwappages() {
+    public String getSwappages() {
         return swappages;
     }
 
-    public void setSwappages(long swappages) {
+    public void setSwappages(String swappages) {
         this.swappages = swappages;
     }
 
@@ -165,11 +165,11 @@ public class VZStatus {
         this.swappages_b = swappages_b;
     }
 
-    public long getPhyspages() {
+    public String getPhyspages() {
         return physpages;
     }
 
-    public void setPhyspages(long physpages) {
+    public void setPhyspages(String physpages) {
         this.physpages = physpages;
     }
 

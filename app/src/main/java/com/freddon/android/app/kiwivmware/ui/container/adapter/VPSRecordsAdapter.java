@@ -14,8 +14,6 @@ import com.freddon.android.app.kiwivmware.ui.container.viewholder.VPSRecordsView
 public class VPSRecordsAdapter extends BaseRecyclerViewAdapter<KiwiVPSRecord> {
 
 
-    private KiwiVPSRecord lastKiwiVPSRecord;
-
 
     public VPSRecordsAdapter(Context context) {
         super(context);

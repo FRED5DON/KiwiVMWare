@@ -1,6 +1,7 @@
 package com.freddon.android.app.kiwivmware.ui.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.NestedScrollView;
 import android.view.LayoutInflater;
@@ -17,12 +18,16 @@ import android.widget.TextView;
 
 import com.freddon.android.app.extension.viewlibs.widget.container.LayersLayout;
 import com.freddon.android.app.kiwivmware.R;
+import com.freddon.android.app.kiwivmware.agent.App;
+import com.freddon.android.app.kiwivmware.config.VPSRecordMaker;
 import com.freddon.android.app.kiwivmware.model.VPSInfo;
 import com.freddon.android.app.kiwivmware.model.VZQuota;
 import com.freddon.android.app.kiwivmware.model.VZStatus;
 import com.freddon.android.app.kiwivmware.presenter.composer.IKiwiComposer;
 import com.freddon.android.app.kiwivmware.tools.DateRender;
+import com.freddon.android.app.kiwivmware.tools.ModalTools;
 import com.freddon.android.app.kiwivmware.tools.RegexHelper;
+import com.freddon.android.app.kiwivmware.ui.activity.AboutActivity;
 import com.freddon.android.app.kiwivmware.ui.activity.ShellActivity;
 import com.freddon.android.app.kiwivmware.ui.activity.VPSRecordsActivity;
 
@@ -36,7 +41,7 @@ import butterknife.ButterKnife;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends BaseFragment<IKiwiComposer.Presenter> implements IKiwiComposer.View {
+public class MainActivityFragment extends BaseFragment<IKiwiComposer.Presenter> implements IKiwiComposer.View, View.OnClickListener {
 
 
     @BindView(R.id.layers)
@@ -86,6 +91,30 @@ public class MainActivityFragment extends BaseFragment<IKiwiComposer.Presenter> 
     @BindView(R.id.content_main)
     FrameLayout contentMain;
 
+    @Override
+    public void onClick(final View v) {
+        v.setEnabled(false);
+        layers.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                v.setEnabled(true);
+            }
+        },200);
+        if(v.getId()==R.id.btn_kiwi_ssh_start){
+            operateVPS(Operation.START);
+        }
+        else if(v.getId()==R.id.btn_kiwi_ssh_stop){
+            operateVPS(Operation.STOP);
+        }
+        else if(v.getId()==R.id.btn_kiwi_ssh_reboot){
+            operateVPS(Operation.RESTART);
+        }
+    }
+
+    enum Operation{
+        START,RESTART,STOP,NONREADY
+    }
+    Operation _peration = Operation.NONREADY;
     public MainActivityFragment() {
     }
 
@@ -121,11 +150,18 @@ public class MainActivityFragment extends BaseFragment<IKiwiComposer.Presenter> 
                 startActivity(VPSRecordsActivity.newIntent(getActivity()));
                 break;
             case R.id.action_settings_refresh:
+                if (VPSRecordMaker.getChecked(getActivity())==null){
+                    error(App.getInstance().getResources().getString(R.string.err_no_vps_record));
+                    return true;
+                }
                 if (mPresenter != null)
                     mPresenter.getLiveServiceInfo();
                 break;
             case R.id.action_settings_shell:
                 startActivity(ShellActivity.newIntent(getActivity()));
+                break;
+            case R.id.action_settings_about:
+                startActivity(AboutActivity.newIntent(getActivity()));
                 break;
             default:
                 break;
@@ -142,7 +178,61 @@ public class MainActivityFragment extends BaseFragment<IKiwiComposer.Presenter> 
 
     @Override
     public void error(CharSequence errorMsg) {
+        if (RegexHelper.isEmpty(errorMsg))return;
+        ModalTools.showToast(getActivity(),errorMsg+"");
+    }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        btnKiwiSshStart.setOnClickListener(this);
+        btnKiwiSshStop.setOnClickListener(this);
+        btnKiwiSshReboot.setOnClickListener(this);
+    }
+
+    /**
+     *
+     * @param operation
+     */
+    private void operateVPS(final Operation operation) {
+        String oper;
+        if(operation==Operation.START){
+            oper="启动";
+        }else if (operation==Operation.STOP){
+            oper="停止";
+        }else if (operation==Operation.RESTART){
+            oper="重启";
+        }else{
+            return;
+        }
+        if(_peration==Operation.NONREADY){
+            error(App.getInstance().getResources().getString(R.string.err_no_vps_record));
+            return;
+        }
+        BottomDialog.newInstance(String.format(Locale.CHINA,"确认要对当前主机进行【%s】操作？",oper))
+                .setCanCanceled(true)
+                .setCanceledOnTouchOutside(true)
+                .callBack(new BottomDialog.BottomSheetDialogEvent() {
+                    @Override
+                    public void onPositive(BottomDialog view) {
+                        view.dismiss();
+                        if(operation==Operation.START){
+                             mPresenter.start();
+                        }else if (operation==Operation.STOP){
+                            mPresenter.stop();
+                        }else if (operation==Operation.RESTART){
+                            mPresenter.restart();
+                        }else{
+                            return;
+                        }
+                    }
+
+                    @Override
+                    public boolean onNegative(BottomDialog view) {
+                        view.dismiss();
+                        return false;
+                    }
+                }).show(getActivity().getSupportFragmentManager());
     }
 
     @Override
@@ -159,7 +249,12 @@ public class MainActivityFragment extends BaseFragment<IKiwiComposer.Presenter> 
 
     @Override
     public void on_getLiveServiceInfo(VPSInfo vpsInfo) {
-        if (vpsInfo == null) return;
+        if (vpsInfo.getVz_status() == null) {
+            loading(true);
+            layers.showLayer(LayersLayout.LAYER_DATA_EMPTY);
+            return;
+        }
+        _peration=Operation.START;
         tvTitle.setText(vpsInfo.getHostname() + " [" + vpsInfo.getPlan() + "] " + vpsInfo.getVm_type());
 
         tvKiwiPhysicalLocation.setText(String.format(Locale.ENGLISH, "%s    Node ID: %s    VPS ID: %s",
@@ -186,17 +281,27 @@ public class MainActivityFragment extends BaseFragment<IKiwiComposer.Presenter> 
 
 
         //RAM
-        tvKiwiRam.setText(String.format(Locale.ENGLISH, "%.2f/%d MB",
-                status.getOomguarpages() * 4.0 / 1024,
-                vpsInfo.getPlan_ram() >> 20));
+        if (RegexHelper.isNumber(status.getOomguarpages())){
+            tvKiwiRam.setText(String.format(Locale.ENGLISH, "%.2f/%d MB",
+                    Long.parseLong(status.getOomguarpages()) * 4.0 / 1024,
+                    vpsInfo.getPlan_ram() >> 20));
+        }else{
+            tvKiwiRam.setText("-");
+        }
+
         progressKiwiRam.setProgress((int) (quota.getSoftlimit_kb() * 100 / vpsInfo.getPlan_ram()));
 
 
         //swap
         //一个page为4KB
-        tvKiwiSwap.setText(String.format(Locale.ENGLISH, "%.2f/%d MB",
-                status.getSwappages() * 4.0 / 1024,
-                vpsInfo.getPlan_swap() >> 20));
+        if (RegexHelper.isNumber(status.getSwappages())){
+            tvKiwiSwap.setText(String.format(Locale.ENGLISH, "%.2f/%d MB",
+                    Long.parseLong(status.getSwappages()) * 4.0 / 1024,
+                    vpsInfo.getPlan_swap() >> 20));
+        }else{
+            tvKiwiSwap.setText("-");
+        }
+
 
         progressKiwiSwap.setProgress((int) (quota.getHardlimit_kb() * 100 / vpsInfo.getPlan_ram()));
 

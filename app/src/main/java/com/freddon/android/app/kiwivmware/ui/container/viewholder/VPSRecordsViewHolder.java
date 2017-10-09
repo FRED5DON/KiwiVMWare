@@ -1,6 +1,8 @@
 package com.freddon.android.app.kiwivmware.ui.container.viewholder;
 
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -13,12 +15,12 @@ import com.freddon.android.app.kiwivmware.tools.RegexHelper;
  */
 public class VPSRecordsViewHolder extends BaseRecyclerViewHolder<KiwiVPSRecord> {
     private TextView name;
-    private RadioButton radioButton;
+    private View view;
 
     public VPSRecordsViewHolder(ViewGroup parent) {
         super(parent, R.layout.item_list_vps_record);
         name = F(R.id.name);
-        radioButton =  F(R.id.rb_chose);
+        view =  F(R.id.img_chose);
     }
 
     @Override
@@ -31,6 +33,6 @@ public class VPSRecordsViewHolder extends BaseRecyclerViewHolder<KiwiVPSRecord> 
             name.append("\nVEID: "+data.getVeid());
             name.append("\nAPI_KEY: "+data.getApiKey());
         }
-        radioButton.setChecked(data.isChose());
+        view.setVisibility(data.isChose()?View.VISIBLE:View.INVISIBLE);
     }
 }

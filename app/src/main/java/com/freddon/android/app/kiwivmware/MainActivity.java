@@ -29,9 +29,9 @@ public class MainActivity extends BaseActivity<IKiwiComposer.Presenter> {
         MainActivityFragment fragment = (MainActivityFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
         mPresenter = new KiwiPresenter(fragment);
         mPresenter.getLiveServiceInfo();
-        LoadingDialog dialog= LoadingDialog.build("Loading...");
-        dialog.setCancelable(true);
-        dialog.show(getSupportFragmentManager(),this.getLocalClassName());
+//        LoadingDialog dialog= LoadingDialog.build("Loading...");
+//        dialog.setCancelable(true);
+//        dialog.show(getSupportFragmentManager(),this.getLocalClassName());
     }
 
 
