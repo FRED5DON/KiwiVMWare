@@ -1,11 +1,7 @@
 package com.freddon.android.app.kiwivmware.ui.fragment;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -20,7 +16,6 @@ import com.freddon.android.app.kiwivmware.config.VPSRecordMaker;
 import com.freddon.android.app.kiwivmware.model.KiwiVPSRecord;
 import com.freddon.android.app.kiwivmware.tools.ModalTools;
 import com.freddon.android.app.kiwivmware.tools.RegexHelper;
-import com.freddon.android.app.kiwivmware.tools.SPBase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

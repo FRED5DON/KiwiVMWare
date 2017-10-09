@@ -281,6 +281,7 @@ public class MainActivityFragment extends BaseFragment<IKiwiComposer.Presenter> 
 
 
         //RAM
+
         if (RegexHelper.isNumber(status.getOomguarpages())){
             tvKiwiRam.setText(String.format(Locale.ENGLISH, "%.2f/%d MB",
                     Long.parseLong(status.getOomguarpages()) * 4.0 / 1024,
@@ -289,7 +290,7 @@ public class MainActivityFragment extends BaseFragment<IKiwiComposer.Presenter> 
             tvKiwiRam.setText("-");
         }
 
-        progressKiwiRam.setProgress((int) (quota.getSoftlimit_kb() * 100 / vpsInfo.getPlan_ram()));
+        progressKiwiRam.setProgress((int) (( Long.parseLong(status.getOomguarpages()) * 4.0 / 1024) * 100 / (vpsInfo.getPlan_ram() >> 20)));
 
 
         //swap
@@ -301,15 +302,13 @@ public class MainActivityFragment extends BaseFragment<IKiwiComposer.Presenter> 
         }else{
             tvKiwiSwap.setText("-");
         }
-
-
-        progressKiwiSwap.setProgress((int) (quota.getHardlimit_kb() * 100 / vpsInfo.getPlan_ram()));
+        progressKiwiSwap.setProgress((int) ( Long.parseLong(status.getSwappages()) * 4.0 / 1024 * 100 / ( vpsInfo.getPlan_swap() >> 20)));
 
         //disk
         tvKiwiDiskUsage.setText(String.format(Locale.ENGLISH, "%.2f/%d GB",
                 quota.getOccupied_kb() * 1.0 / 1024 / 1024,
                 vpsInfo.getPlan_disk() >> 30));
-        progressKiwiDiskUsage.setProgress((int) (quota.getOccupied_kb() * 100 / vpsInfo.getPlan_ram()));
+        progressKiwiDiskUsage.setProgress((int) ( quota.getOccupied_kb() * 1.0 / 1024 / 1024 * 100 / (vpsInfo.getPlan_disk() >> 30)));
 
 
         progressKiwiBandwidthUsage.setProgress((int) (vpsInfo.getData_counter() / vpsInfo.getPlan_monthly_data() * 100));
@@ -318,7 +317,7 @@ public class MainActivityFragment extends BaseFragment<IKiwiComposer.Presenter> 
                 String.format(Locale.ENGLISH, "%.2f/%d GB",
                         vpsInfo.getData_counter() * 1D / 1024 / 1024 / 1024,
                         vpsInfo.getPlan_monthly_data() >> 30));
-        String resets = getResources().getString(R.string.kiwi_bandwidth_usage_resets) + " : " + DateRender.stringDate(vpsInfo.getData_next_reset() * 1000);
+        String resets = getResources().getString(R.string.kiwi_bandwidth_usage_resets) + " : " + DateRender.stringDate(vpsInfo.getData_next_reset() * 1000+24*3600*1000);
         tvKiwiBandwidthResets.setText(resets);
         tvKiwiOs.setText(vpsInfo.getOs());
         tvKiwiHostname.setText(vpsInfo.getHostname());

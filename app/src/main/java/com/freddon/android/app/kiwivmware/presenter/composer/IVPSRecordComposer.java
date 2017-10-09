@@ -16,6 +16,7 @@ public interface IVPSRecordComposer {
     interface View extends IBaseView<Presenter> {
 
         void on_getVpsRecords(List<KiwiVPSRecord> kiwiVPSRecord);
+        void refresh();
 
     }
 

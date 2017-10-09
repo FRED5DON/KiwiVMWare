@@ -57,6 +57,11 @@ public class VPSRecordsActivity extends BaseActivity<IVPSRecordComposer.Presente
         mPresenter.getVpsRecords(this);
     }
 
+    @Override
+    public void refresh() {
+        if (mPresenter != null)
+            mPresenter.getVpsRecords(this);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -98,7 +103,7 @@ public class VPSRecordsActivity extends BaseActivity<IVPSRecordComposer.Presente
                 if (lastKiwiVPSRecord != null) {
                     lastKiwiVPSRecord.setChose(false);
                 }
-                for(int i=0;i<adapter.getmValues().size();i++){
+                for (int i = 0; i < adapter.getmValues().size(); i++) {
                     adapter.getmValues().get(i).setChose(false);
                 }
                 current.setChose(true);
@@ -150,15 +155,15 @@ public class VPSRecordsActivity extends BaseActivity<IVPSRecordComposer.Presente
                 lastKiwiVPSRecord = kiwiVPSRecords.get(0);
                 lastKiwiVPSRecord.setChose(true);
                 VPSRecordMaker.checked(VPSRecordsActivity.this, lastKiwiVPSRecord);
-            }else{
-               for (int i=0;i<kiwiVPSRecords.size();i++){
-                   KiwiVPSRecord kp = kiwiVPSRecords.get(i);
-                   if(current.getApiKey().equals(kp.getApiKey())
-                           && current.getVeid().equals(kp.getVeid())){
-                       kp.setChose(true);
-                       break;
-                   }
-               }
+            } else {
+                for (int i = 0; i < kiwiVPSRecords.size(); i++) {
+                    KiwiVPSRecord kp = kiwiVPSRecords.get(i);
+                    if (current.getApiKey().equals(kp.getApiKey())
+                            && current.getVeid().equals(kp.getVeid())) {
+                        kp.setChose(true);
+                        break;
+                    }
+                }
             }
             adapter.notity(kiwiVPSRecords);
         }

@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 
 android {
+    def debugChannels = ['local']
+
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
@@ -26,14 +28,54 @@ android {
     buildTypes {
         release {
             buildConfigField "String", "HOSTURL", "\"" + System.getProperty("hosturl", "https://api.64clouds.com/") + "\""
-            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            applicationVariants.all { variant ->
+                if (!debugChannels.contains(variant.productFlavors[0].name)) {
+                    variant.outputs.each { output ->
+                        def outputFile = output.outputFile
+                        if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                            def fileName = "kiwivmware_v${defaultConfig.versionName}_${variant.productFlavors[0].name}.apk"
+                            output.outputFile = new File(outputFile.parent, fileName)
+                        }
+                    }
+                }
+            }
         }
 
         debug {
+            minifyEnabled false
             buildConfigField "String", "HOSTURL", "\"" + System.getProperty("hosturl", "https://api.64clouds.com/") + "\""
         }
     }
+
+    productFlavors {
+//        online {}
+//        local {}
+
+        //channel
+        FDS0{} //freddon.com
+        //FDS1{} //snackblogs.com
+//        D001 {}//腾讯应用中心
+//        D002{}//百度手机助手
+//        D003{}//安卓市场
+//        D004 {}//新浪微博
+
+    }
+
+    signingConfigs {
+
+        release {
+            storeFile file("kiwivmware.jks")
+            storePassword 'kiwivmware'
+            keyAlias 'kiwivmware'
+            keyPassword 'kiwivmware'
+        }
+
+        debug {
+        }
+    }
+
     externalNativeBuild {
         cmake {
             path "CMakeLists.txt"
